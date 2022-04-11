@@ -84,7 +84,7 @@ private:
 	virtual void OnMouseDown(WPARAM btnState, int x, int y)override;
 	virtual void OnMouseUp(WPARAM btnState, int x, int y)override;
 	virtual void OnMouseMove(WPARAM btnState, int x, int y)override;
-	void GetMovementBoolean(bool& forward, bool& backward, bool& left, bool& right);
+	void GetMovementBooleans(bool& forward, bool& backward, bool& left, bool& right);
 
 	void OnKeyboardInput(const GameTimer& gt);
 	void AnimateMaterials(const GameTimer& gt);
@@ -148,7 +148,7 @@ private:
 	std::vector<std::unique_ptr<RenderItem>> mAllRitems;
 
 	// Render items divided by PSO.
-	std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
+	std::vector<RenderItem*> mRitemLayer[static_cast<int>(RenderLayer::Count)];
 
 	std::unique_ptr<Waves> mWaves;
 
@@ -165,21 +165,21 @@ private:
 
 	POINT mLastMousePos;
 
-	
+	//Define our camera
 	Camera m_Camera;
 
-	
+	//Set camera speed manually
 	float m_CameraSpeed = 12.5f;
-	BoundingBox m_CameraBoundingBox;
 
-
+	//Movement booleans ( modified in function ) 
 	bool moveForward = true;
 	bool moveBackward = true;
 	bool moveLeft = true;
 	bool moveRight = true;
 
-
+	//Temp_Cam - temporary variable modified/returned in intersects function(s).
 	float temp_cam = 0.0f;
+	//Distance allowed between camera and bounding box.
 	float camera_collision_distance = 3.0f;
 	
 };
@@ -435,17 +435,25 @@ void CastleApp::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.x = x;
 	mLastMousePos.y = y;
 }
-void CastleApp::GetMovementBoolean(bool& forward, bool& backward, bool& left, bool& right)
+void CastleApp::GetMovementBooleans(bool& forward, bool& backward, bool& left, bool& right)
 {
+	
+	//Reset movement booleans to true - modified in for loop and returned to movement function scope as reference.
 	moveForward = true;
 	moveBackward = true;
 	moveLeft = true;
 	moveRight = true;
-	
+
+	//Go through every opaque/visible render item in layer.
 	for (int i = 0; i < mRitemLayer[static_cast<int>(RenderLayer::Opaque)].size(); i++)
 	{
+		//Check if bounding box of render item intersects with camera position + direction.
 		if (mRitemLayer[static_cast<int>(RenderLayer::Opaque)][i]->bounding_box.Intersects(m_Camera.GetPosition(), m_Camera.GetLook(), temp_cam)) {
+			
+			//Check if our distance is less than camera collision distance.
 			if (temp_cam < camera_collision_distance) {
+				
+				//Set movement boolean to false (this gets returned).
 				moveForward = false;
 			}
 		}
@@ -473,7 +481,7 @@ void CastleApp::OnKeyboardInput(const GameTimer& gt)
 
 	const float dt = gt.DeltaTime();
 	//Here we check all opaque render items 
-	GetMovementBoolean(moveForward, moveBackward, moveLeft, moveRight);
+	GetMovementBooleans(moveForward, moveBackward, moveLeft, moveRight);
 	
 	//GetAsyncKeyState returns a short (2 bytes)
 	if((GetAsyncKeyState('W') & 0x8000) && moveForward) //most significant bit (MSB) is 1 when key is pressed (1000 000 000 000)
