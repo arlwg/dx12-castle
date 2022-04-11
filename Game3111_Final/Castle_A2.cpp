@@ -496,6 +496,12 @@ void CastleApp::OnKeyboardInput(const GameTimer& gt)
 	if((GetAsyncKeyState('D') & 0x8000) && moveRight)
 		m_Camera.Strafe(m_CameraSpeed*dt);
 
+	if((GetAsyncKeyState('Q') & 0x8000))
+		m_Camera.Pedestal(m_CameraSpeed*dt);
+
+	if((GetAsyncKeyState('E') & 0x8000))
+		m_Camera.Pedestal(-m_CameraSpeed*dt);
+
 	m_Camera.UpdateViewMatrix();
 }
 
