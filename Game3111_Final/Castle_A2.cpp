@@ -640,10 +640,13 @@ void CastleApp::UpdateMainPassCB(const GameTimer& gt)
 	mMainPassCB.Lights[11].Strength = { 4.7f, 1.f, 1.f };
 	mMainPassCB.Lights[11].FalloffStart = 1;
 	mMainPassCB.Lights[11].FalloffEnd = 1.1;
-
-	//12- Spotlight-Pyramid
-	mMainPassCB.Lights[12].Position = { 0.0f, 25.0f, 0.0f };
+	mMainPassCB.Lights[12].Position = { 0, 10, -76.5};
 	mMainPassCB.Lights[12].Strength = { 4.7f, 3.1f, 6.6f };
+	//13- Spotlight-Pyramid
+	mMainPassCB.Lights[13].Position = { 0.0f, 25.0f, 0.0f };
+	mMainPassCB.Lights[13].Strength = { 4.7f, 3.1f, 6.6f };
+	
+
 	
     auto currPassCB = mCurrFrameResource->PassCB.get();
     currPassCB->CopyData(0, mMainPassCB);
@@ -1862,6 +1865,8 @@ void CastleApp::BuildMaze(UINT& objCBIndex)
 	Build_Render_Item_Collision("wedge", XMMatrixScaling(150, 5.f, 10.f), XMMatrixTranslation(0, 2.5, -105), "grass", objCBIndex++);
 	// Left Wedge
 	Build_Render_Item_Rotate("wedge", XMMatrixScaling(200, 5.f, 10.f), XMMatrixTranslation(-80, 2.5, 0), XMMatrixRotationY(1.5707963268), "grass", objCBIndex++);
+	// Right Wedge
+	Build_Render_Item_Rotate("wedge", XMMatrixScaling(200, 5.f, 10.f), XMMatrixTranslation(80, 2.5, 0), XMMatrixRotationY(4.7123889804), "grass", objCBIndex++);
 	//Maze 1 ( Back Left Wall )
 	Build_Render_Item_Collision("box", XMMatrixScaling(24.f, 10.f, 1.f), XMMatrixTranslation(-18.5, 10, -30.5), "wall", objCBIndex++);
 	//Maze 2 ( Back Right wall )
