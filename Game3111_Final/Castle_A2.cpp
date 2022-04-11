@@ -1844,6 +1844,17 @@ void CastleApp::BuildMaze(UINT& objCBIndex)
 	Build_Render_Item("sphere", XMMatrixScaling(2.f, 2.f, 2.f), XMMatrixTranslation(-7, 20, -76.5), "stone", objCBIndex++);
 	//Inner Sphere MiddleL
 	Build_Render_Item("sphere", XMMatrixScaling(2.f, 2.f, 2.f), XMMatrixTranslation(7, 20, -76.5), "stone", objCBIndex++);
+
+	
+	//Maze Cylinder Front MiddleR
+	Build_Render_Item("cylinder", XMMatrixScaling(3.f, 15.f, 3.f), XMMatrixTranslation(-30, 12.5, -76.5), "weird2", objCBIndex++);
+	//Maze Cylinder Front MiddleL
+	Build_Render_Item("cylinder", XMMatrixScaling(3.f, 15.f, 3.f), XMMatrixTranslation(30, 12.5, -76.5), "weird2", objCBIndex++);
+
+	//Inner Sphere MiddleR
+	Build_Render_Item("sphere", XMMatrixScaling(2.f, 2.f, 2.f), XMMatrixTranslation(-30, 20, -76.5), "stone", objCBIndex++);
+	//Inner Sphere MiddleL
+	Build_Render_Item("sphere", XMMatrixScaling(2.f, 2.f, 2.f), XMMatrixTranslation(30, 20, -76.5), "stone", objCBIndex++);
 	
 	// Maze Ground
 	Build_Render_Item_Collision("box", XMMatrixScaling(150, 5.f, 200.f), XMMatrixTranslation(0, 2.5, 0), "grass", objCBIndex++);
@@ -1953,28 +1964,28 @@ void CastleApp::BuildMaze(UINT& objCBIndex)
 void CastleApp::BuildCastle(UINT& objCBIndex)
 {
 	//Front wall Left
-	Build_Render_Item("box", XMMatrixScaling(20, 10.f, 2.f), XMMatrixTranslation(-12, 10, -23), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(20, 10.f, 2.f), XMMatrixTranslation(-12, 10, -23), "wall", objCBIndex++);
 	//Front wall Right
-	Build_Render_Item("box", XMMatrixScaling(20, 10.f, 2.f), XMMatrixTranslation(12, 10, -23), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(20, 10.f, 2.f), XMMatrixTranslation(12, 10, -23), "wall", objCBIndex++);
 	
 	////Front wall Top
-	Build_Render_Item("box", XMMatrixScaling(4, 2.f, 2.f), XMMatrixTranslation(0, 14, -23), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(4, 2.f, 2.f), XMMatrixTranslation(0, 14, -23), "wall", objCBIndex++);
 	////Back wall
-	Build_Render_Item("box", XMMatrixScaling(44.f, 10.f, 2.f), XMMatrixTranslation(0, 10, 23), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(44.f, 10.f, 2.f), XMMatrixTranslation(0, 10, 23), "wall", objCBIndex++);
 	////Left wall
-	Build_Render_Item("box", XMMatrixScaling(2.f, 10.f, 48.f), XMMatrixTranslation(-23, 10, 0), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(2.f, 10.f, 48.f), XMMatrixTranslation(-23, 10, 0), "wall", objCBIndex++);
 	////Right wall
-	Build_Render_Item("box", XMMatrixScaling(2.f, 10.f, 48.f), XMMatrixTranslation(23, 10, 0), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(2.f, 10.f, 48.f), XMMatrixTranslation(23, 10, 0), "wall", objCBIndex++);
 
 	//Inner front wall
-	Build_Render_Item("box", XMMatrixScaling(12.f, 10.f, 2.f), XMMatrixTranslation(14, 10, -19), "wall", objCBIndex++);/**/
-	Build_Render_Item("box", XMMatrixScaling(12.f, 10.f, 2.f), XMMatrixTranslation(-14, 10, -19), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(12.f, 10.f, 2.f), XMMatrixTranslation(14, 10, -19), "wall", objCBIndex++);/**/
+	Build_Render_Item_Collision("box", XMMatrixScaling(12.f, 10.f, 2.f), XMMatrixTranslation(-14, 10, -19), "wall", objCBIndex++);
 	//Inner back wall
-	Build_Render_Item("box", XMMatrixScaling(38.5f, 10.f, 2.f), XMMatrixTranslation(0, 10, 19), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(38.5f, 10.f, 2.f), XMMatrixTranslation(0, 10, 19), "wall", objCBIndex++);
 	//Inner left wall
-	Build_Render_Item("box", XMMatrixScaling(2.f, 10.f, 38.5f), XMMatrixTranslation(-19, 10, 0), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(2.f, 10.f, 38.5f), XMMatrixTranslation(-19, 10, 0), "wall", objCBIndex++);
 	//Inner right wall
-	Build_Render_Item("box", XMMatrixScaling(2.f, 10.f, 38.5f), XMMatrixTranslation(19, 10, 0), "wall", objCBIndex++);
+	Build_Render_Item_Collision("box", XMMatrixScaling(2.f, 10.f, 38.5f), XMMatrixTranslation(19, 10, 0), "wall", objCBIndex++);
 
 	////Pyramid
 	Build_Render_Item_Rotate("pyramid", XMMatrixScaling(20.f, 20.f, 20.f), XMMatrixRotationY(0.7853981634), XMMatrixTranslation(0, 14.5, 0), "gold", objCBIndex++);
