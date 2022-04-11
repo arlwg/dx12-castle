@@ -105,7 +105,6 @@ private:
 	void BuildPSOs();
 	void BuildFrameResources();
 	void BuildMaterials();
-	void CheckCollision(std::vector<XMMATRIX> positions, XMMATRIX cameraPosition);
 	void Build_Render_Item_Rotate(const char* item, XMMATRIX scale_matrix, XMMATRIX translate_matrix, XMMATRIX rotation_matrix,
 	                              const char* material, UINT ObjIndex);
 	void Build_Render_Item(const char* item, XMMATRIX scale_matrix, XMMATRIX translate_matrix,
@@ -1772,12 +1771,6 @@ void CastleApp::BuildMaterials()
 
 }
 
-void CastleApp::CheckCollision(std::vector<XMMATRIX> positions, XMMATRIX cameraPosition)
-{
-	for(int i = 0; i < positions.size() - 1; i++)
-	{
-	}
-}
 //Build Shape Item That Rotates
 void CastleApp::Build_Render_Item_Rotate(const char* item, XMMATRIX scale_matrix, XMMATRIX translate_matrix, XMMATRIX rotation_matrix, const char* material, UINT ObjIndex)
 {
