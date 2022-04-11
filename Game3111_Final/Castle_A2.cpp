@@ -648,7 +648,7 @@ void CastleApp::UpdateMainPassCB(const GameTimer& gt)
 	mMainPassCB.Lights[11].Strength = { 4.7f, 1.f, 1.f };
 	mMainPassCB.Lights[11].FalloffStart = 1;
 	mMainPassCB.Lights[11].FalloffEnd = 1.1;
-	mMainPassCB.Lights[12].Position = { 0, 10, -76.5};
+	mMainPassCB.Lights[12].Position = { 0, 10, -77};
 	mMainPassCB.Lights[12].Strength = { 4.7f, 3.1f, 6.6f };
 	//13- Spotlight-Pyramid
 	mMainPassCB.Lights[13].Position = { 0.0f, 25.0f, 0.0f };
